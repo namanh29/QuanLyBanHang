@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hdct" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dbb76078-171b-4e49-8407-d54ef0452636">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset_hd" uuid="27110cce-e0b7-4e9f-9cab-9427aba759e2">
+		<parameter name="id_hd" class="java.lang.String"/>
+		<parameter name="ngay" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT ngay_lap, hoa_don_xuat.id_kh, ten_kh, trang_thai, tong_tien
+FROM hoa_don_xuat, khach_hang
+WHERE hoa_don_xuat.id_kh = khach_hang.id_kh
+AND id_hd = $P{id_hd}]]>
+		</queryString>
+		<field name="ngay_lap" class="java.sql.Date">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="id_kh" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ten_kh" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="trang_thai" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tong_tien" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="Dataset_hdct" uuid="0259a4cb-c9d2-48f9-89db-3ad3a54a019a">
+		<parameter name="id_hd" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT hoa_don_chi_tiet.id_sp, san_pham.ten_sp, so_luong, san_pham.don_gia, san_pham.don_gia*so_luong as thanh_tien
+FROM hoa_don_chi_tiet, san_pham
+WHERE hoa_don_chi_tiet.id_sp=san_pham.id_sp
+AND id_hd = $P{id_hd}]]>
+		</queryString>
+		<field name="id_sp" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ten_sp" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="so_luong" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="don_gia" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="thanh_tien" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="idhd" class="java.lang.String"/>
+	<parameter name="ngay" class="java.lang.String"/>
+	<parameter name="idkh" class="java.lang.String"/>
+	<parameter name="ten_kh" class="java.lang.String"/>
+	<parameter name="trang_thai" class="java.lang.String"/>
+	<parameter name="tong_tien" class="java.lang.String"/>
+	<parameter name="thue" class="java.lang.String"/>
+	<parameter name="tong_cong" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ngay_lap, hoa_don_xuat.id_kh, ten_kh, trang_thai, tong_tien, tong_tien/10 as thue, tong_tien*11/10 as tong_cong
+FROM hoa_don_xuat, khach_hang
+WHERE hoa_don_xuat.id_kh = khach_hang.id_kh
+AND id_hd = $P{idhd}]]>
+	</queryString>
+	<field name="ngay_lap" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_kh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ten_kh" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="trang_thai" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tong_tien" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="thue" class="java.lang.Double"/>
+	<field name="tong_cong" class="java.lang.Double"/>
+	<variable name="variable1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="33" y="10" width="165" height="20" uuid="f4f4fe46-ca49-4264-a893-e42f2eb5e77c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cửa hàng Nam Anh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="30" width="187" height="20" uuid="8d419755-211d-4542-b36a-8b0fa0e74cb2"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Địa chỉ: Hai Bà Trưng, Hà Nội]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="50" width="175" height="20" uuid="d64eb312-59ad-4f59-a980-dc54fc4d5f57"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Điện thoại: 0888888888]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="10" width="160" height="20" uuid="17a7b3f5-6bf7-4964-b9dd-fc5ea07e3ceb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hóa đơn bán hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="30" width="143" height="20" uuid="d2642cd0-1987-44b0-872f-8c2fe6571b17"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Điện thoại và phụ kiện]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="430" splitType="Stretch">
+			<staticText>
+				<reportElement x="98" y="11" width="100" height="20" uuid="7b42235a-8b2f-494a-9ac9-445fee367b9d"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Mã hóa đơn]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="275" y="11" width="100" height="20" forecolor="#0000FF" uuid="4b1125fa-e5be-4f71-93c7-e479e66adbfc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idhd}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="98" y="41" width="100" height="20" uuid="9dc07838-54fc-48d7-8f7d-583a087a4f8d"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Ngày lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="74" width="100" height="20" uuid="c020d00c-e9da-400a-a3c8-fbbde73dd7c8"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Mã khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="107" width="110" height="20" uuid="e8d0469e-4311-40c2-8129-4c3595e2f6de"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Tên khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="137" width="100" height="20" uuid="0574a60d-9fdc-49da-853a-4f863829bdef"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Trạng thái]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="275" y="74" width="100" height="20" forecolor="#0000FF" uuid="984efd9f-9310-4a5d-b333-78be2709435e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_kh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="107" width="100" height="20" forecolor="#0000FF" uuid="474b64ca-c4c9-4aa9-b16e-ff00cf2b187c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ten_kh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="137" width="100" height="20" forecolor="#0000FF" uuid="c24318f3-be9d-4824-a712-b1e301b4afd1"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trang_thai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="108" y="307" width="100" height="20" uuid="04d8f7d6-750c-4b2c-9128-faa5c6151b72"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền (vnđ)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="342" width="100" height="20" uuid="dd7033ec-9777-4454-bbab-5dee82c1efae"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Thuế (vnđ)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="384" width="100" height="20" uuid="8b3a765c-64c9-4e5b-bef3-69d1cd5b448a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Tổng cộng (vnđ)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="307" width="100" height="20" forecolor="#0000FF" uuid="c97b416a-9f07-41c1-8cb1-792536a2a84a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tong_tien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="342" width="100" height="20" forecolor="#0000FF" uuid="28bcd365-e4cb-4baf-8053-505e60fcd4a7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{thue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="384" width="100" height="20" forecolor="#0000FF" uuid="5bd6b409-e04c-4fcb-accf-c4eb0fea1752"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tong_cong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="41" width="100" height="20" forecolor="#0000FF" uuid="a2d39cbf-61d1-48b2-af54-cc2b35fcf662"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ngay_lap}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="41" y="181" width="460" height="60" uuid="ae75ebfb-87d3-40c9-9321-d41b3ec3aa6b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset_hdct" uuid="d91193a0-0220-4d8d-b717-69d8793f86d8">
+						<datasetParameter name="id_hd">
+							<datasetParameterExpression><![CDATA[$P{idhd}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="0d57ba6a-9f34-45fd-8363-0298b5800566">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="30fd9ed3-4bed-448c-bc81-effcf7a63b2f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="14"/>
+								</textElement>
+								<text><![CDATA[Mã sản phẩm]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="33" uuid="91aa9b67-7c6e-4468-b2f3-c5e9354c9d5b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{id_sp}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="57c27ae6-f9fd-4ab4-a33e-911c5b0f94e7">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="ea2075df-0ed9-4dae-a752-581b701db5ed"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<text><![CDATA[Tên sản phẩm]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="33" uuid="daef645e-f26a-4003-8796-835bf0e00821"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ten_sp}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="101" uuid="71b7723d-bd5e-44a3-bddf-4015bde1c8f2">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="b9202941-b2fe-43a4-97b8-2ebba465d406"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<text><![CDATA[Số lượng]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="33" uuid="a736ced9-29be-4dc9-9980-adeb271bd6cb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{so_luong}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="7a0a5ae7-2ec7-402d-841c-638616cafccd">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="51156a9e-4504-4979-a413-a8583b930165"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<text><![CDATA[Đơn giá]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="33" uuid="5e56dba4-7e92-4717-9bb4-66d4f239dd9d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{don_gia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="d162f7ad-14ce-40df-8bc8-d5b347986151">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="6746f9de-972d-499a-8a78-19e36cf9cc06"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<text><![CDATA[Thành tiền]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="33" uuid="30a8625f-d1b4-4784-b406-be624b4ce369"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{thanh_tien}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<summary>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="360" y="0" width="100" height="20" uuid="79b897f7-1188-4399-a246-59b7084176bc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quản lý]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="30" width="100" height="20" uuid="58445211-3d4c-46cf-8c80-3128766f0b6d"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Nam Anh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="64" width="100" height="20" uuid="eca9f0b8-92bf-4d71-bbb6-02c6c8e92bcc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<text><![CDATA[Phạm Nam Anh]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
